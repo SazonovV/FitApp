@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Поделиться тренировкой с другом</h1>
+<div mat-dialog-content class="dialog">
+
+  <mat-form-field style="width: 100%">
+    <mat-label>Выберете друга</mat-label>
+    <mat-select [(ngModel)]="data.userId" name="measureId">
+      <mat-option *ngFor="let friend of friends$ | async" [value]="friend.id">
+        {{friend.firstName}} {{friend.secondName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions class="buttons_dialog flex">
+  <button mat-flat-button color="warn" (click)="onNoClick()">Отменить</button>
+  <button mat-flat-button color="primary" [mat-dialog-close]="data.userId" cdkFocusInitial>Добавить</button>
+</div>

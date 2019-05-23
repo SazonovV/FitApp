@@ -1,0 +1,55 @@
+<div class="workplace">
+  <div>
+    <h1>Сегодняшний тренировочный план</h1>
+    <h3>{{ todayDate | date }}</h3>
+  </div>
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let train of trainList$ | async">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{train.name}}
+        </mat-panel-title>
+        <mat-panel-description>
+          <!--{{train.date | date}}-->
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div>
+        <table mat-table [dataSource]="train.exercises">
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="number">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let element; let i = index"> {{ i + 1 }} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Название </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="num_rep">
+            <th mat-header-cell *matHeaderCellDef> Количество повторений </th>
+            <td mat-cell *matCellDef="let element"> {{element.num_rep}} </td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="num_try">
+            <th mat-header-cell *matHeaderCellDef> Количество подходов </th>
+            <td mat-cell *matCellDef="let element"> {{element.num_try}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element"> <button mat-flat-button color="warn" (click)="deleteExercise(element.id)">Удалить</button> </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onOpenExercise(row.id)" class="table_row"></tr>
+        </table>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

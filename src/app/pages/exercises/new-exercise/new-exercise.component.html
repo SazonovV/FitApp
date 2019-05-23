@@ -1,0 +1,35 @@
+<h1 mat-dialog-title>Новое упражнение</h1>
+<div mat-dialog-content class="dialog">
+  <mat-form-field class="element">
+    <input matInput [(ngModel)]="exercise.name" placeholder="Название">
+  </mat-form-field>
+  <mat-form-field class="element">
+    <input matInput [(ngModel)]="exercise.num_rep" placeholder="Количество повторений" type="number">
+  </mat-form-field>
+  <mat-form-field class="element">
+    <input matInput [(ngModel)]="exercise.num_try" placeholder="Количество подходов" type="number">
+  </mat-form-field>
+  <mat-form-field class="element element_half">
+    <input matInput [(ngModel)]="exercise.num_measure" placeholder="Нагрузка" type="number">
+  </mat-form-field>
+  <mat-form-field class="element element_half">
+    <mat-label>Тип нагрузки</mat-label>
+    <mat-select [(ngModel)]="exercise.measure_unitId" name="measureId">
+      <mat-option *ngFor="let measure of measures" [value]="measure.id">
+        {{measure.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="element">
+    <mat-label>Тренажер</mat-label>
+    <mat-select [(ngModel)]="exercise.apparatusId" name="apparatusID">
+      <mat-option *ngFor="let apparatus of apparatuses" [value]="apparatus.id">
+        {{apparatus.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button (click)="onSaveClick()" cdkFocusInitial>Ok</button>
+</div>

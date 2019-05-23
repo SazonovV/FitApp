@@ -1,0 +1,27 @@
+<div class="workplace">
+  <h1>Добавление новых друзей</h1>
+  <mat-form-field class="fullwidth" [formGroup]="searchForm">
+    <input matInput placeholder="Поиск" formControlName="search">
+  </mat-form-field>
+  <div class="cards flex">
+    <div *ngFor="let user of users$ | async">
+      <div *ngIf="user.email !== loggedUser.email" class="card flex">
+        <div class="image">
+          <img [src]="user.image ?'data:image/jpg;base64,'+user.image: '../../../assets/img/no-image.png'"/>
+        </div>
+        <div class="info flex">
+          <div>
+            Имя: <span>{{user.firstName}}</span>
+          </div>
+          <div>
+            Фамилия: <span>{{user.secondName}}</span>
+          </div>
+          <div><span>Почта: </span><span>{{user.email}}</span></div>
+          <div class="friend_button">
+            <button mat-flat-button color="primary" (click)="onAddFriend(user.id)">Добавить в друзья</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

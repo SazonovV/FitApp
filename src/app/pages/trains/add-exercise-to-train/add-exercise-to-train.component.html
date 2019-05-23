@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Добавить новое упражнение</h1>
+<div mat-dialog-content>
+
+  <mat-form-field style="width: 100%">
+    <mat-label>Выберете упражнение</mat-label>
+    <mat-select [(ngModel)]="data.exerciseId" name="measureId">
+      <mat-option *ngFor="let exercise of exercises" [value]="exercise.id">
+        {{exercise.name}} Подходы: {{exercise.num_try}} Повторения: {{exercise.num_rep}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions class="buttons_dialog flex">
+  <button mat-flat-button color="warn" (click)="onNoClick()">Отменить</button>
+  <button mat-flat-button color="primary" [mat-dialog-close]="data.exerciseId" cdkFocusInitial>Добавить</button>
+</div>

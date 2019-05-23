@@ -1,0 +1,16 @@
+<div class="workplace">
+  <h1 *ngIf="exercise">{{exercise.name}}</h1>
+  <div class="info flex">
+    <div *ngIf="exercise" class="exercise flex">
+      <div class="element">Количество повторений: <strong>{{exercise.num_try}}</strong></div>
+      <div class="element">Количество подходов: <strong>{{exercise.num_rep}}</strong></div>
+      <div class="element">Нагрузка: <strong>{{exercise.num_measure}} {{measure}}</strong></div>
+    </div>
+    <div *ngIf="apparatus" class="apparatus flex">
+      <h3>{{apparatus.name}}</h3>
+      <div>
+        <img [src]="apparatus.image ?'data:image/jpg;base64,'+apparatus.image: '../../../assets/img/no-image.png'"/>
+      </div>
+    </div>
+  </div>
+</div>

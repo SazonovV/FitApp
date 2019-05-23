@@ -1,0 +1,56 @@
+<div class="start flex">
+  <div class="enter flex">
+    <div class="info flex" [class.info_border]="!registerOpened && !signInOpened">
+      <h1>Фитнесс помошник</h1>
+      <span>Наше приложени поможет вам лучше следить за вашим тренировочным планом</span>
+      <button *ngIf="!registerOpened && !signInOpened" mat-flat-button color="primary" class="button" (click)="onClickSignIn()">Войти</button>
+      <button *ngIf="!registerOpened && !signInOpened" mat-flat-button color="primary" class="button" (click)="onClickRegister()">Зарегистрироваться</button>
+    </div>
+    <div [class.sign-in_closed]="!signInOpened" class="sign-in flex">
+      <button mat-icon-button class="arrow_back_button" (click)="onBack()">
+        <mat-icon svgIcon="arrow-back"></mat-icon>
+      </button>
+      <div class="login_form flex">
+        <span>Вход</span>
+        <form [formGroup]="loginForm" class="flex">
+          <mat-form-field class="fullwidth">
+            <input formControlName="email" matInput placeholder="Email" autocomplete="username">
+          </mat-form-field>
+          <mat-form-field class="fullwidth">
+            <input formControlName="password" matInput placeholder="Password" type="password" autocomplete="current-password">
+          </mat-form-field>
+          <button mat-flat-button color="primary" class="button" [disabled]="loginForm.invalid" (click)="onLoginSubmit()">Вход</button>
+        </form>
+      </div>
+    </div>
+    <div [class.sign-in_closed]="!registerOpened" class="sign-in flex">
+      <button mat-icon-button class="arrow_back_button" (click)="onBack()">
+        <mat-icon svgIcon="arrow-back"></mat-icon>
+      </button>
+      <div class="login_form flex">
+        <span>Регистрация</span>
+        <form [formGroup]="registerForm" class="flex">
+          <mat-form-field class="fullwidth">
+            <input formControlName="firstName" matInput placeholder="Имя">
+          </mat-form-field>
+          <mat-form-field class="fullwidth">
+            <input formControlName="secondName" matInput placeholder="Фамилия">
+          </mat-form-field>
+          <mat-error *ngIf="registerError" style="font-size: 12px">Такой email уже используется</mat-error>
+          <mat-form-field class="fullwidth">
+            <input formControlName="email" matInput placeholder="Email" autocomplete="username">
+          </mat-form-field>
+          <mat-form-field class="fullwidth">
+            <input formControlName="firstPass" matInput placeholder="Пароль" type="password" autocomplete="current-password">
+            <mat-error *ngIf="registerForm.value.firstPass.length < 8">Длина пароля должна быть больше 8 символов</mat-error>
+          </mat-form-field>
+          <mat-form-field class="fullwidth">
+            <input formControlName="password" matInput placeholder="Повторите пароль" type="password" autocomplete="current-password">
+            <mat-error *ngIf="!(registerForm.value.firstPass === registerForm.value.password)">Пароли должны совпадать</mat-error>
+          </mat-form-field>
+          <button mat-flat-button color="primary" class="button" [disabled]="registerForm.invalid" (click)="onRegisterSubmit(registerForm.value)">Зарегистрироваться</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

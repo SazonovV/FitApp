@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Новая тренировка</h1>
+<div mat-dialog-content class="dialog">
+  <mat-form-field class="element">
+    <input matInput [(ngModel)]="name" placeholder="Название">
+  </mat-form-field>
+  <mat-form-field  class="element">
+    <input matInput [matDatepicker]="picker" [(ngModel)]="date" placeholder="Выберете дату">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field class="element">
+    <input matInput [(ngModel)]="repeat" placeholder="Через сколько дней повторить" type="number">
+  </mat-form-field>
+
+</div>
+<div mat-dialog-actions class="buttons_dialog flex">
+  <button mat-flat-button color="warn" (click)="onNoClick()">Отменить</button>
+  <button mat-flat-button color="primary" (click)="onSaveClick()" cdkFocusInitial>Создать</button>
+</div>

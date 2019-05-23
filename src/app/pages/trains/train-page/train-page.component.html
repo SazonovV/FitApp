@@ -1,0 +1,47 @@
+<div  class="workplace">
+  <div class="header flex">
+    <h1 *ngIf="trainInfo">{{trainInfo.name}}</h1>
+    <div>
+      <button mat-flat-button color="primary" (click)="openAddFriendToTrain()" style="margin-right: 30px">Поделиться с другом</button>
+      <button mat-flat-button color="primary" (click)="openDialog()">Добавить новое упражнение</button>
+    </div>
+  </div>
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="exercises">
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="number">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element; let i = index"> {{ i + 1 }} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Название </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="num_rep">
+        <th mat-header-cell *matHeaderCellDef> Количество повторений </th>
+        <td mat-cell *matCellDef="let element"> {{element.num_rep}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="num_try">
+      <th mat-header-cell *matHeaderCellDef> Количество подходов </th>
+      <td mat-cell *matCellDef="let element"> {{element.num_try}} </td>
+    </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element"> <button mat-flat-button color="warn" (click)="deleteExercise(element.id)">Удалить</button> </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onOpenExercise(row.id)" class="table_row"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[15, 30, 50]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>

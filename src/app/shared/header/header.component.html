@@ -1,0 +1,13 @@
+<div class="header flex">
+  <div class="logo flex">
+    <!--<img src="../../../assets/img/shark-logo.png" alt="">-->
+    <h3>Фитнес помошник</h3>
+  </div>
+  <div class="profile">
+    <button mat-flat-button color="primary" routerLink="/profile">
+      {{user.firstName}}
+      {{user.secondName}}
+    </button>
+    <button mat-stroked-button class="logout" (click)="logout()">Logout</button>
+  </div>
+</div>

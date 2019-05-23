@@ -1,0 +1,49 @@
+<div class="workplace profile flex">
+  <div class="image flex">
+    <div>
+      <img [src]="user.image ?'data:image/jpg;base64,'+user.image: '../../../assets/img/no-image.png'"/>
+    </div>
+    <div>
+      <input
+        style="display: none"
+        type="file" (change)="onFileChanged($event)"
+        #fileInput>
+      <button mat-stroked-button (click)="fileInput.click()">Добавить картинку</button>
+    </div>
+  </div>
+  <div class="info">
+    <form [formGroup]="userForm" class="form flex">
+      <mat-form-field class="form_element">
+        <input formControlName="firstName" matInput placeholder="Имя">
+      </mat-form-field>
+      <mat-form-field class="form_element">
+        <input formControlName="secondName" matInput placeholder="Фамилия">
+      </mat-form-field>
+      <mat-form-field class="form_element">
+        <input formControlName="email" matInput placeholder="Почта" autocomplete="username">
+      </mat-form-field>
+    </form>
+    <button mat-flat-button color="primary" (click)="onChangeSave()">{{userForm.enabled ? 'Сохранить': 'Изменить'}}</button>
+  </div>
+  <div class="pass flex">
+    <button mat-flat-button color="primary" (click)="onUpdate()" class="buttons">Обновить информацию</button>
+    <form *ngIf="changePassFlag" [formGroup]="passForm" class="form flex">
+      <mat-form-field class="form_element">
+        <input formControlName="firstPass" matInput placeholder="Пароль" type="password" autocomplete="new-password">
+        <mat-error *ngIf="passForm.value.firstPass.length < 8">Длина пароля должна быть больше 8 символов</mat-error>
+      </mat-form-field>
+      <mat-form-field class="form_element">
+        <input formControlName="password" matInput placeholder="Повторите пароль" type="password" autocomplete="new-password">
+        <mat-error *ngIf="!(passForm.value.firstPass === passForm.value.password)">Пароли должны совпадать</mat-error>
+      </mat-form-field>
+    </form>
+    <button
+      mat-flat-button color="primary"
+      (click)="onChangePass()"
+      class="buttons"
+      [disabled]="changePassFlag ? passForm.invalid: false">
+
+      Поменять пароль
+    </button>
+  </div>
+</div>

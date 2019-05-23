@@ -1,0 +1,70 @@
+.start {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(180deg, #5AC8FA 0%, #007AFF 61.98%, #5856D6 100%);
+  justify-content: center;
+  align-items: center;
+}
+.enter {
+  overflow: hidden;
+  height: 60vh;
+  width: 60vw;
+  .info {
+    padding: 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    flex-basis: 200px;
+    flex-grow: 1;
+    border-radius: 20px 0 0 20px;
+    background: rgba(255, 255, 255, 0.25);
+    transition: 1s;
+    &_border {
+      border-radius: 20px;
+    }
+    span {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+  }
+  .sign-in {
+    flex-direction: column;
+    background: #ffffff;
+    flex-basis: 200px;
+    flex-grow: 3;
+    transition: 1s;
+    border-radius: 0 20px 20px 0;
+    &_closed {
+      width: 0;
+      flex-basis: 0;
+      flex-grow: 0;
+      position: absolute;
+      left: 2000px;
+    }
+    .login_form {
+      flex-grow: 1;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      span {
+        font-size: 24px;
+      }
+      form {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 30px;
+        .fullwidth {
+          width: 300px;
+        }
+      }
+    }
+  }
+  .arrow_back_button {
+  }
+  .button {
+    width: 300px;
+    margin-top: 15px;
+  }
+}

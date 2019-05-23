@@ -1,0 +1,27 @@
+<div class="workplace">
+  <div class="header flex">
+    <h1>Мои Друзья</h1>
+    <button mat-flat-button color="primary" routerLink="/friends/new-friends">Добавление новых друзей</button>
+  </div>
+  <div class="cards flex">
+    <div *ngFor="let user of users$ | async">
+      <div *ngIf="user.email !== loggedUser.email" class="card flex">
+        <div class="image">
+          <img [src]="user.image ?'data:image/jpg;base64,'+user.image: '../../../assets/img/no-image.png'"/>
+        </div>
+        <div class="info flex">
+          <div>
+            Имя: <span>{{user.firstName}}</span>
+          </div>
+          <div>
+            Фамилия: <span>{{user.secondName}}</span>
+          </div>
+          <div><span>Почта: </span><span>{{user.email}}</span></div>
+          <div class="friend_button">
+            <button mat-flat-button color="warn" (click)="onDeleteFriend(user.id)">Удалить из друзей</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
